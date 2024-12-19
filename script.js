@@ -39,4 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function setLoading(isLoading) {
-        searchBtn.disabled = isLoading
+        searchBtn.disabled = isLoading;
+        if (isLoading) {
+            searchBtn.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i><span class="ml-2 hidden-mobile">Searching...</span>';
+        } else {
+            searchBtn.innerHTML = '<i data-lucide="search"></i><span class="ml-2 hidden-mobile">Search</span>';
+        }
+        lucide.createIcons();
+    }
+
+    function displayWeather(data) {
+        temperatureEl.textContent = `${data.temp}°C`;
+        conditionEl.textContent = data.condition;
+        humidityEl.textContent = `${data.humidity}%`;
+        windSpeedEl.textContent = `${data.windSpeed} km/h`;
+        weatherInfo.classList.remove('hidden');
+    }
+});
