@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Now</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient p-4 flex-center">
+        <div class="card w-full max-w-md">
+            <div class="card-header">
+                <h1 class="card-title">
+                    <i data-lucide="cloud"></i>
+                    Weather Now
+                </h1>
+            </div>
+            <div class="card-content">
+                <form id="weather-form" class="space-y-4">
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="city-input" 
+                            placeholder="Enter a city name" 
+                            class="flex-1"
+                            required
+                        >
+                        <button type="submit" id="search-btn">
+                            <i data-lucide="search"></i>
+                            <span class="ml-2 hidden-mobile">Search</span>
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="error-message" class="text-red-500 text-sm text-center"></div>
+
+                <div id="weather-info" class="mt-6 space-y-4 hidden">
+                    <div class="flex-center gap-4">
+                        <i data-lucide="cloud-rain" class="h-16 w-16 text-blue-500"></i>
+                        <div id="temperature" class="text-4xl font-bold"></div>
+                    </div>
+                    <div id="condition" class="text-center text-lg font-medium"></div>
+                    <div class="grid-2 gap-4 pt-4 border-t">
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500">Humidity</div>
+                            <div id="humidity" class="font-medium"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500">Wind Speed</div>
+                            <div id="wind-speed" class="font-medium"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-4 text-sm text-center text-gray-600">
+            Made with ❤️ by Snahasish
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
