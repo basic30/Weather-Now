@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const humidityEl = document.getElementById('humidity');
     const windSpeedEl = document.getElementById('wind-speed');
 
+    // OpenWeatherMap API Key
+    const API_KEY = '689eb33c48d88f1fb4acbc7ea86949b1'; // Your API key
+    const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const city = cityInput.value.trim();
@@ -21,13 +25,20 @@ document.addEventListener('DOMContentLoaded', () => {
         weatherInfo.classList.add('hidden');
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // Fetch weather data from the OpenWeatherMap API
+            const response = await fetch(`${API_URL}?q=${city}&units=metric&appid=${API_KEY}`);
+            const data = await response.json();
+
+            if (data.cod === '404') {
+                throw new Error('City not found');
+            }
+
+            // Extract weather data
             const weatherData = {
-                temp: 22,
-                condition: 'Partly Cloudy',
-                humidity: 65,
-                windSpeed: 12
+                temp: data.main.temp,
+                condition: data.weather[0].description,
+                humidity: data.main.humidity,
+                windSpeed: data.wind.speed,
             };
 
             displayWeather(weatherData);
@@ -52,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         temperatureEl.textContent = `${data.temp}°C`;
         conditionEl.textContent = data.condition;
         humidityEl.textContent = `${data.humidity}%`;
-        windSpeedEl.textContent = `${data.windSpeed} km/h`;
+        windSpeedEl.textContent = `${data.windSpeed} m/s`;
         weatherInfo.classList.remove('hidden');
     }
 });
