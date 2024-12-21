@@ -15,8 +15,9 @@ async function handleSearch(e) {
     e.preventDefault();
     const city = cityInput.value.trim();
     if (city) {
-        // Add the active class to the button to show the spinner
-        searchForm.querySelector('.search-button').classList.add('active');
+        // Show the spinner and hide the search icon
+        searchIcon.style.display = 'none';
+        spinner.style.display = 'inline-block';
         
         try {
             const weatherData = await getWeatherData(city);
@@ -27,8 +28,9 @@ async function handleSearch(e) {
             console.error('Error:', error);
             showError('An error occurred while fetching weather data. Please try again later.');
         } finally {
-            // Remove the active class to hide the spinner and show the search icon again
-            searchForm.querySelector('.search-button').classList.remove('active');
+            // Hide the spinner and show the search icon
+            searchIcon.style.display = 'inline-block';
+            spinner.style.display = 'none';
         }
     }
 }
