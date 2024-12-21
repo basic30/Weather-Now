@@ -21,24 +21,6 @@ body {
     text-align: center;
     margin-bottom: 2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    animation: fallFromSky 2s ease-out; /* Add animation here */
-}
-
-/* Falling animation */
-@keyframes fallFromSky {
-    0% {
-        transform: translateY(-100vh); /* Start above the screen */
-        opacity: 0;
-    }
-    50% {
-        transform: translateY(30vh); /* Fall a bit down */
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(0); /* End at the normal position */
-        opacity: 1;
-    }
 }
 
 /* Search Form */
@@ -180,28 +162,13 @@ body {
 
 /* Spinner */
 .spinner {
-    display: none; /* Hidden by default */
-    animation: spin 1s linear infinite; /* Apply spin animation */
-    font-size: 1.5rem; /* Adjust size of the spinner */
+    display: none;
+    animation: spin 1s linear infinite;
 }
 
-/* Spin animation */
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Show spinner when active */
-.search-button.active .spinner {
-    display: inline-block;
-}
-
-.search-button.active #searchIcon {
-    display: none; /* Hide search icon when spinner is active */
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Initial Message */
@@ -209,4 +176,14 @@ body {
     text-align: center;
     font-size: 1.2rem;
     margin-top: 3rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 2s ease-in-out;
 }
