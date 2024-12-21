@@ -129,28 +129,22 @@ function displayWeatherData(weatherData) {
         </div>
         
         <div class="weather-details">
-            <div class="detail-box">
-                <h4>Precipitation</h4>
-                <p>
-                    <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="precipitation-icon" style="width: 30px;">
-                    ${weatherData.precipitation}
-                </p>
-            </div>
-            <div class="detail-box">
-                <h4>Humidity</h4>
-                <p>
-                    <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="humidity-icon" style="width: 30px;">
-                    ${weatherData.humidity}
-                </p>
-            </div>
-            <div class="detail-box">
-                <h4>Wind</h4>
-                <p>
-                    <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="wind-icon" style="width: 30px;">
-                    ${weatherData.wind}
-                </p>
-            </div>
-        </div>
+    <div class="detail-box">
+        <h4>Precipitation</h4>
+        <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="precipitation-icon" style="width: 30px;">
+        <p>${weatherData.precipitation}</p>
+    </div>
+    <div class="detail-box">
+        <h4>Humidity</h4>
+        <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="humidity-icon" style="width: 30px;">
+        <p>${weatherData.humidity}</p>
+    </div>
+    <div class="detail-box">
+        <h4>Wind</h4>
+        <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="wind-icon" style="width: 30px;">
+        <p>${weatherData.wind}</p>
+    </div>
+</div>
     `;
 
     // Insert the generated HTML into the weather display container
