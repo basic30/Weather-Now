@@ -122,6 +122,8 @@ function displayWeatherData(weatherData) {
         </div>
     `;
     weatherDisplay.innerHTML = weatherHTML;
+    weatherDisplay.style.display = 'block'; // Ensure the element is visible
+    weatherDisplay.classList.add('fade-in'); // Apply fade-in animation
 }
 
 function getWeatherIcon(iconCode) {
