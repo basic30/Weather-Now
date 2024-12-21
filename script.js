@@ -93,7 +93,6 @@ async function getWeatherData(city) {
 
 function displayWeatherData(weatherData) {
     const weatherHTML = `
-    const weatherHTML = `
     <div class="weather-header">
         <div>${weatherData.location}</div>
         <div>Current Weather</div>
