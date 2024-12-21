@@ -35,18 +35,3 @@ export function Search({ onSearch, isLoading }: SearchProps) {
         value={city}
         onChange={(e) => setCity(e.target.value)}
         className="flex-1 bg-white/20 text-white placeholder-white/70 border-white/30 focus:border-white"
-Home
-Docs
-Guides
-Help
-Contact
-Loading status…
-
-Select a display theme:
-
-system
-
-light
-
-dark
-© 2024, Vercel Inc.
