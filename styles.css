@@ -1,12 +1,10 @@
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #f76da2, #a163f3);
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #ee9ca7, #ffdde1);
-    color: white;
-    text-align: center;
 }
 
 /* Container */
