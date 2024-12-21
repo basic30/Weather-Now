@@ -68,8 +68,8 @@ async function getWeatherData(city) {
             acc.push({
                 date,
                 day: new Date(item.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' }),
-                highTemp: item.main.temp_max,
-                lowTemp: item.main.temp_min,
+                highTemp: Math.round(item.main.temp_max),
+                lowTemp: Math.round(item.main.temp_min),
                 icon: item.weather[0].icon
             });
         }
@@ -91,54 +91,71 @@ async function getWeatherData(city) {
 }
 
 function displayWeatherData(weatherData) {
-    const firstHourlyIcon = weatherData.hourlyForecast?.[0]?.icon || '01d';
     const weatherHTML = `
         <div class="weather-header">
-            <div class="weather-location">${weatherData.location}</div>
-            <div class="weather-description">Current Weather</div>
+            <div>${weatherData.location}</div>
+            <div>Current Weather</div>
         </div>
-        <div class="weather-current">
-            <div class="weather-main">
-                ${getWeatherIcon(firstHourlyIcon)}
-                <div class="weather-temp">${weatherData.currentTemp}°C</div>
-                <div class="weather-condition">${weatherData.condition}</div>
-            </div>
-            <div class="weather-high-low">
-                <div>H: ${weatherData.highTemp}°C</div>
-                <div>L: ${weatherData.lowTemp}°C</div>
-            </div>
-        </div>
+        <div class="weather-temp">${weatherData.currentTemp}°C</div>
+        <div class="weather-condition">${weatherData.condition}</div>
+        <div>H: ${weatherData.highTemp}°C | L: ${weatherData.lowTemp}°C</div>
+        
         <div class="weather-section">
-            <h3 class="weather-section-title">Hourly Forecast</h3>
+            <h3>Hourly Forecast</h3>
             <div class="hourly-forecast">
                 ${weatherData.hourlyForecast.map(hour => `
                     <div class="hourly-item">
+                        <img src="https://openweathermap.org/img/wn/${hour.icon}@2x.png" alt="${hour.temp}°C">
                         <div>${hour.time}</div>
-                        ${getWeatherIcon(hour.icon)}
                         <div>${hour.temp}°C</div>
                     </div>
                 `).join('')}
             </div>
         </div>
+        
+        <div class="weather-section">
+            <h3>5-Day Forecast</h3>
+            <div class="daily-forecast">
+                ${weatherData.dailyForecast.map(day => `
+                    <div class="daily-item">
+                        <img src="https://openweathermap.org/img/wn/${day.icon}@2x.png" alt="icon">
+                        <div>${day.day}</div>
+                        <div>${day.highTemp}°C / ${day.lowTemp}°C</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        
+        <div class="weather-details">
+            <div class="detail-box">
+                <h4>Precipitation</h4>
+                <p>
+                    <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="precipitation-icon" style="width: 30px;">
+                    ${weatherData.precipitation}
+                </p>
+            </div>
+            <div class="detail-box">
+                <h4>Humidity</h4>
+                <p>
+                    <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="humidity-icon" style="width: 30px;">
+                    ${weatherData.humidity}
+                </p>
+            </div>
+            <div class="detail-box">
+                <h4>Wind</h4>
+                <p>
+                    <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="wind-icon" style="width: 30px;">
+                    ${weatherData.wind}
+                </p>
+            </div>
+        </div>
     `;
-    weatherDisplay.innerHTML = weatherHTML;
-}
 
-function getWeatherIcon(iconCode) {
-    const iconMap = {
-        '01d': '☀',
-        '01n': '🌙',
-        '02d': '⛅',
-        '02n': '☁',
-        '03d': '☁',
-        '03n': '☁',
-        '04d': '☁',
-        '04n': '☁',
-        '09d': '🌧',
-        '09n': '🌧',
-        '10d': '🌦',
-        '10n': '🌧',
-        '11d': '⛈' // Fixed value for '11d'
-    };
-    return iconMap[iconCode] || '❓';
+    // Insert the generated HTML into the weather display container
+    weatherDisplay.innerHTML = weatherHTML;
+
+    // Add animation
+    const weatherContainer = document.querySelector('.weather-container');
+    weatherContainer.classList.remove('hidden');
+    setTimeout(() => weatherContainer.classList.add('visible'), 100);
 }
