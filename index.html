@@ -5,60 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Now</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.16/dist/framer-motion.min.js"></script>
 </head>
 <body>
-    <div class="min-h-screen bg-gradient p-4 flex-center">
-        <div class="card w-full max-w-md">
-            <div class="card-header">
-                <h1 class="card-title">
-                    <i data-lucide="cloud"></i>
-                    Weather Now
-                </h1>
-            </div>
-            <div class="card-content">
-                <form id="weather-form" class="space-y-4">
-                    <div class="flex gap-2">
-                        <input 
-                            type="text" 
-                            id="city-input" 
-                            placeholder="Enter a city name" 
-                            class="flex-1"
-                            required
-                        >
-                        <button type="submit" id="search-btn">
-                            <i data-lucide="search"></i>
-                            <span class="ml-2 hidden-mobile">Search</span>
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="error-message" class="text-red-500 text-sm text-center"></div>
-
-                <div id="weather-info" class="mt-6 space-y-4 hidden">
-                    <div class="flex-center gap-4">
-                        <i data-lucide="cloud-rain" class="h-16 w-16 text-blue-500"></i>
-                        <div id="temperature" class="text-4xl font-bold"></div>
-                    </div>
-                    <div id="condition" class="text-center text-lg font-medium"></div>
-                    <div class="grid-2 gap-4 pt-4 border-t">
-                        <div class="text-center">
-                            <div class="text-sm text-gray-500">Humidity</div>
-                            <div id="humidity" class="font-medium"></div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-sm text-gray-500">Wind Speed</div>
-                            <div id="wind-speed" class="font-medium"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <footer class="mt-4 text-sm text-center text-gray-600">
-            Made with ❤️ by Snahasish
-        </footer>
-    </div>
+    <main class="container">
+        <h1 class="title">Weather Now</h1>
+        <form id="searchForm" class="search-form">
+            <input type="text" id="cityInput" placeholder="Enter city name..." class="search-input">
+            <button type="submit" class="search-button">
+                <svg id="searchIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <svg id="spinner" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon spinner">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" />
+                </svg>
+            </button>
+        </form>
+        <div id="errorMessage" class="error-message"></div>
+        <div id="weatherDisplay" class="weather-display"></div>
+        <div id="initialMessage" class="initial-message">This Website Made By Snahasish.</div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
