@@ -93,14 +93,12 @@ async function getWeatherData(city) {
 function displayWeatherData(weatherData) {
     const weatherHTML = `
         <div class="weather-header">
-    <div>${weatherData.location}</div>
-    <div>Current Weather</div>
-</div>
-conditionIcon: currentWeather.weather[0].icon,
-<div class="weather-temp">${weatherData.currentTemp}°C</div>
-<div class="weather-condition">${weatherData.condition}</div>
-<img src="https://openweathermap.org/img/wn/${weatherData.conditionIcon}@2x.png" alt="${weatherData.condition}">
-<div>H: ${weatherData.highTemp}°C | L: ${weatherData.lowTemp}°C</div>
+            <div>${weatherData.location}</div>
+            <div>Current Weather</div>
+        </div>
+        <div class="weather-temp">${weatherData.currentTemp}°C</div>
+        <div class="weather-condition">${weatherData.condition}</div>
+        <div>H: ${weatherData.highTemp}°C | L: ${weatherData.lowTemp}°C</div>
         
         <div class="weather-section">
             <h3>Hourly Forecast</h3>
@@ -129,22 +127,28 @@ conditionIcon: currentWeather.weather[0].icon,
         </div>
         
         <div class="weather-details">
-    <div class="detail-box">
-        <h4>Precipitation</h4>
-        <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="precipitation-icon" style="width: 30px;">
-        <p>${weatherData.precipitation}</p>
-    </div>
-    <div class="detail-box">
-        <h4>Humidity</h4>
-        <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="humidity-icon" style="width: 30px;">
-        <p>${weatherData.humidity}</p>
-    </div>
-    <div class="detail-box">
-        <h4>Wind</h4>
-        <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="wind-icon" style="width: 30px;">
-        <p>${weatherData.wind}</p>
-    </div>
-</div>
+            <div class="detail-box">
+                <h4>Precipitation</h4>
+                <p>
+                    <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="precipitation-icon" style="width: 30px;">
+                    ${weatherData.precipitation}
+                </p>
+            </div>
+            <div class="detail-box">
+                <h4>Humidity</h4>
+                <p>
+                    <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="humidity-icon" style="width: 30px;">
+                    ${weatherData.humidity}
+                </p>
+            </div>
+            <div class="detail-box">
+                <h4>Wind</h4>
+                <p>
+                    <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="wind-icon" style="width: 30px;">
+                    ${weatherData.wind}
+                </p>
+            </div>
+        </div>
     `;
 
     // Insert the generated HTML into the weather display container
