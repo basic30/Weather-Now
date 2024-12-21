@@ -180,13 +180,28 @@ body {
 
 /* Spinner */
 .spinner {
-    display: none;
-    animation: spin 1s linear infinite;
+    display: none; /* Hidden by default */
+    animation: spin 1s linear infinite; /* Apply spin animation */
+    font-size: 1.5rem; /* Adjust size of the spinner */
 }
 
+/* Spin animation */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Show spinner when active */
+.search-button.active .spinner {
+    display: inline-block;
+}
+
+.search-button.active #searchIcon {
+    display: none; /* Hide search icon when spinner is active */
 }
 
 /* Initial Message */
