@@ -91,12 +91,12 @@ async function getWeatherData(city) {
 }
 
 function displayWeatherData(weatherData) {
-    conditionIcon: currentWeather.weather[0].icon, // This will give you the icon code (like "01d", "02d")
     const weatherHTML = `
         <div class="weather-header">
     <div>${weatherData.location}</div>
     <div>Current Weather</div>
 </div>
+conditionIcon: currentWeather.weather[0].icon,
 <div class="weather-temp">${weatherData.currentTemp}°C</div>
 <div class="weather-condition">${weatherData.condition}</div>
 <img src="https://openweathermap.org/img/wn/${weatherData.conditionIcon}@2x.png" alt="${weatherData.condition}">
