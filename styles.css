@@ -104,15 +104,10 @@ body {
 }
 
 /* Hourly and Daily Forecast */
-.hourly-forecast {
+.hourly-forecast, .daily-forecast {
     display: flex;
     justify-content: space-between;
     overflow-x: auto;
-}
-.daily-forecast {
-    display: flex;
-    flex-direction: column; /* Change from row to column */
-    justify-content: center;
 }
 
 .hourly-item, .daily-item {
