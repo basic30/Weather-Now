@@ -159,24 +159,47 @@ body {
 .detail-box {
     flex: 1;
     margin: 5px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    backdrop-filter: blur(5px);
+    padding: 20px;
+    background-color: transparent; /* Colors set individually below */
+    border-radius: 10px;
     text-align: center;
+    color: black; /* Black text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional for added effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 150px; /* Uniform height for all boxes */
 }
 
+/* Individual box colors */
+.detail-box:nth-child(1) {
+    background-color: #caa2ef; /* Purple for Precipitation */
+}
+
+.detail-box:nth-child(2) {
+    background-color: #b4d4a7; /* Green for Humidity */
+}
+
+.detail-box:nth-child(3) {
+    background-color: #f9aa83; /* Orange for Wind */
+}
+
+/* Icons within the detail box */
+.detail-box img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+/* Ensure text looks proportional */
 .detail-box h4 {
     margin: 0;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
 }
 
 .detail-box p {
     margin: 5px 0 0;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    color: white;
 }
 
 /* Error Message */
