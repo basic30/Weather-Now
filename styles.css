@@ -114,12 +114,12 @@ body {
 }
 
 .weather-condition img {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
 }
 
 .weather-temp {
-    font-size: 50px;
+    font-size: 45px;
     font-weight: bold;
     color: white;
 }
