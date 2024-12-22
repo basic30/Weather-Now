@@ -152,57 +152,59 @@ body {
 /* Weather Details */
 .weather-details {
     display: flex;
-    flex-wrap: wrap; /* Ensure wrapping for smaller screens */
-    justify-content: space-between; /* Distribute boxes evenly */
-    gap: 10px; /* Add space between boxes */
-    padding: 20px; /* Add padding inside the container */
+    justify-content: space-between; /* Ensure even spacing */
+    align-items: stretch; /* Stretch boxes to the same height */
+    gap: 10px; /* Space between the boxes */
+    padding: 20px; /* Padding around the container */
     max-width: 100%; /* Ensure the container doesn't overflow */
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box; /* Include padding in calculations */
 }
 
 .detail-box {
-    flex: 1 1 calc(30% - 10px); /* Adjusted width for smaller size */
-    max-width: calc(30% - 10px);
+    flex: 1; /* Ensure all boxes take equal width */
+    max-width: 30%; /* Fit three boxes in a row */
     padding: 10px;
-    background-color: transparent; /* Colors set individually below */
+    background-color: transparent; /* Set colors individually below */
     border-radius: 10px;
     text-align: center;
     color: black;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 110px; /* Slightly reduced height */
+    justify-content: center;
+    height: 120px; /* Uniform height */
+    box-sizing: border-box;
 }
 
 .detail-box img {
-    width: 30px; /* Reduce icon size */
-    margin-bottom: 5px;
+    width: 30px; /* Adjust icon size */
+    margin: 0 auto 5px; /* Center icon */
 }
 
 .detail-box h4 {
-    font-size: 0.9rem; /* Reduce heading size */
+    font-size: 0.8rem; /* Smaller heading size */
     margin: 5px 0;
     color: #333;
+    word-wrap: break-word; /* Wrap long text */
 }
 
 .detail-box p {
-    font-size: 1.2rem; /* Slightly smaller font for values */
+    font-size: 1.1rem; /* Adjust font size for values */
     font-weight: bold;
     margin: 0;
 }
 
 /* Card Colors */
 .detail-box:nth-child(1) {
-    background-color: #caa2ef;
+    background-color: #caa2ef; /* Purple for Precipitation */
 }
 
 .detail-box:nth-child(2) {
-    background-color: #b4d4a7;
+    background-color: #b4d4a7; /* Green for Humidity */
 }
 
 .detail-box:nth-child(3) {
-    background-color: #f9aa83;
+    background-color: #f9aa83; /* Orange for Wind */
 }
 /* Error Message */
 .error-message {
