@@ -151,7 +151,6 @@ body {
 
 /* Weather Details */
 .weather-details {
-.weather-details {
     display: flex;
     justify-content: space-between; /* Spread boxes evenly */
     flex-wrap: wrap; /* Allow wrapping to prevent overflow */
@@ -204,7 +203,6 @@ body {
     font-size: 18px;
     font-weight: bold;
 }
-
 /* Error Message */
 .error-message {
     max-width: 400px;
