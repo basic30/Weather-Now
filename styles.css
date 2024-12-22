@@ -172,7 +172,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 120px; /* Uniform height */
+    height: 150px; /* Uniform height */
     box-sizing: border-box;
 }
 
