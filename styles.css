@@ -152,12 +152,9 @@ body {
 /* Weather Details */
 .weather-details {
     display: flex;
-    justify-content: space-between; /* Spread boxes evenly */
-    flex-wrap: wrap; /* Allow wrapping to prevent overflow */
+    justify-content: space-between;
     margin-top: 20px;
-    gap: 10px; /* Add spacing between boxes */
 }
-
 .detail-box {
     flex: 1;
     margin: 5px;
