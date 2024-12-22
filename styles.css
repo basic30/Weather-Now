@@ -151,14 +151,17 @@ body {
 
 /* Weather Details */
 .weather-details {
+.weather-details {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Spread boxes evenly */
+    flex-wrap: wrap; /* Allow wrapping to prevent overflow */
     margin-top: 20px;
+    gap: 10px; /* Add spacing between boxes */
 }
 
 .detail-box {
-    flex: 1;
-    margin: 5px;
+    flex: 1 1 calc(30% - 10px); /* Ensure 3 boxes fit in one row with spacing */
+    max-width: calc(30% - 10px); /* Limit width to prevent overflow */
     padding: 20px;
     background-color: transparent; /* Colors set individually below */
     border-radius: 10px;
