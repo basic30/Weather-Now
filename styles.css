@@ -152,25 +152,28 @@ body {
 /* Weather Details */
 .weather-details {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Even spacing between boxes */
+    align-items: center; /* Vertically align boxes */
     margin-top: 20px;
+    gap: 10px; /* Add spacing between boxes */
 }
+
 .detail-box {
-    flex: 1;
-    margin: 5px;
+    flex: 1 1 calc(33.33% - 10px); /* Ensure each box takes equal width */
+    max-width: calc(33.33% - 10px); /* Consistent size for all boxes */
     padding: 20px;
     background-color: transparent; /* Colors set individually below */
     border-radius: 10px;
     text-align: center;
     color: black; /* Black text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional for added effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 120px; /* Uniform height for all boxes */
+    height: 150px; /* Uniform height for all boxes */
 }
 
-/* Individual box colors */
+/* Set individual colors for each box */
 .detail-box:nth-child(1) {
     background-color: #caa2ef; /* Purple for Precipitation */
 }
@@ -189,7 +192,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* Ensure text looks proportional */
+/* Text styling */
 .detail-box h4 {
     margin: 0;
     font-size: 16px;
