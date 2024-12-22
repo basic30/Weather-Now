@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-    background: linear-gradient(to bottom, #f76da2, #c684f7, #a163f3);
+    background: linear-gradient(to bottom, #f76da2, #a163f3);
     color: #ffffff;
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -84,18 +84,51 @@ body {
 
 /* Weather Header */
 .weather-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.weather-header div:first-child {
     font-size: 24px;
     font-weight: bold;
+}
+
+.weather-header .current-weather {
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Weather Display */
+.weather-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weather-condition {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.weather-condition img {
+    width: 50px;
+    height: 50px;
 }
 
 .weather-temp {
     font-size: 48px;
     font-weight: bold;
-    margin: 10px 0;
+    color: white;
 }
 
-.weather-condition {
-    font-size: 18px;
+.weather-high-low {
+    text-align: right;
+    font-size: 16px;
+    line-height: 1.5;
+    color: white;
 }
 
 /* Weather Section */
@@ -136,12 +169,14 @@ body {
 .detail-box h4 {
     margin: 0;
     font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .detail-box p {
     margin: 5px 0 0;
     font-size: 16px;
     font-weight: bold;
+    color: white;
 }
 
 /* Error Message */
