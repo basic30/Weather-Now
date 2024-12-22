@@ -95,14 +95,18 @@ function displayWeatherData(weatherData) {
     const weatherHTML = `
     <div class="weather-header">
         <div>${weatherData.location}</div>
-        <div>Current Weather</div>
+        <div class="current-weather">Current Weather</div>
     </div>
-    <div class="weather-temp">${weatherData.currentTemp}°C</div>
-    <div class="weather-condition">
-        <img src="https://openweathermap.org/img/wn/${weatherData.conditionIcon}@2x.png" alt="${weatherData.condition}" style="width: 50px;">
-        ${weatherData.condition}
+    <div class="weather-display">
+        <div class="weather-condition">
+            <img src="https://openweathermap.org/img/wn/${weatherData.conditionIcon}@2x.png" alt="${weatherData.condition}">
+            <div class="weather-temp">${weatherData.currentTemp}°C</div>
+        </div>
+        <div class="weather-high-low">
+            <div>H: ${weatherData.highTemp}°C</div>
+            <div>L: ${weatherData.lowTemp}°C</div>
+        </div>
     </div>
-    <div>H: ${weatherData.highTemp}°C | L: ${weatherData.lowTemp}°C</div>
     
     <div class="weather-section">
         <h3>Hourly Forecast</h3>
