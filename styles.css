@@ -159,8 +159,8 @@ body {
 }
 
 .detail-box {
-    flex: 1 1 calc(30% - 10px); /* Ensure 3 boxes fit in one row with spacing */
-    max-width: calc(30% - 10px); /* Limit width to prevent overflow */
+    flex: 1;
+    margin: 5px;
     padding: 20px;
     background-color: transparent; /* Colors set individually below */
     border-radius: 10px;
@@ -170,7 +170,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 150px; /* Uniform height for all boxes */
+    height: 120px; /* Uniform height for all boxes */
 }
 
 /* Individual box colors */
