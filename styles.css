@@ -162,7 +162,7 @@ body {
 
 .detail-box {
     flex: 1; /* Ensure all boxes take equal width */
-    max-width: 40%; /* Fit three boxes in a row */
+    max-width: 30%; /* Fit three boxes in a row */
     padding: 10px;
     background-color: transparent; /* Set colors individually below */
     border-radius: 10px;
