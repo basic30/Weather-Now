@@ -107,7 +107,7 @@ function displayWeatherData(weatherData) {
             <div>L: ${weatherData.lowTemp}°C</div>
         </div>
     </div>
-    
+<div class="section-separator"></div>    
     <div class="weather-section">
         <h3>Hourly Forecast</h3>
         <div class="hourly-forecast">
@@ -120,7 +120,7 @@ function displayWeatherData(weatherData) {
             `).join('')}
         </div>
     </div>
-    
+    <div class="section-separator"></div> 
     <div class="weather-section">
         <h3>5-Day Forecast</h3>
         <div class="daily-forecast">
@@ -133,7 +133,7 @@ function displayWeatherData(weatherData) {
             `).join('')}
         </div>
     </div>
-    
+   <div class="section-separator"></div> 
     <div class="weather-details">
     <div class="detail-box">
         <h4>Precipitation</h4>
