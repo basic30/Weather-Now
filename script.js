@@ -1,4 +1,4 @@
-const API_KEY = '689eb33c48d88f1fb4acbc7ea86949b1'; // Replace with your actual API key
+const API_KEY = 'de1df44f985e079c75c6d46b0b35488e'; // Replace with your Weatherstack API key
 
 const searchForm = document.getElementById('searchForm');
 const cityInput = document.getElementById('cityInput');
@@ -36,59 +36,44 @@ async function handleSearch(e) {
 }
 
 async function getWeatherData(city) {
+    // Weatherstack geocode endpoint to get latitude and longitude
     const geoResponse = await fetch(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${API_KEY}`
+        `http://api.weatherstack.com/current?access_key=${API_KEY}&query=${encodeURIComponent(city)}`
     );
     if (!geoResponse.ok) throw new Error('Unable to find location');
     const geoData = await geoResponse.json();
-    if (!geoData.length) throw new Error('City not found');
+    if (!geoData.current) throw new Error('City not found');
 
-    const { lat, lon } = geoData[0];
-    const currentWeatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
-    );
-    if (!currentWeatherResponse.ok) throw new Error('Unable to fetch current weather');
-    const currentWeather = await currentWeatherResponse.json();
+    // Extracting weather data
+    const { location, current, forecast } = geoData;
+    
+    const hourlyForecast = forecast ? forecast.map(item => ({
+        time: item.time, // Time (based on forecast API response)
+        temp: Math.round(item.temperature),
+        icon: item.weather_icons[0] // Weatherstack icon URL
+    })) : [];
 
-    const forecastResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
-    );
-    if (!forecastResponse.ok) throw new Error('Unable to fetch forecast');
-    const forecastData = await forecastResponse.json();
-
-    const hourlyForecast = forecastData.list.slice(0, 6).map(item => ({
-        time: new Date(item.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true }),
-        temp: Math.round(item.main.temp),
-        icon: item.weather[0].icon
-    }));
-
-    const dailyForecast = forecastData.list.reduce((acc, item) => {
-        const date = new Date(item.dt * 1000).toLocaleDateString('en-US');
-        if (!acc.find(d => d.date === date)) {
-            acc.push({
-                date,
-                day: new Date(item.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' }),
-                highTemp: Math.round(item.main.temp_max),
-                lowTemp: Math.round(item.main.temp_min),
-                icon: item.weather[0].icon
-            });
-        }
-        return acc;
-    }, []).slice(0, 5);
+    const dailyForecast = forecast ? forecast.slice(0, 5).map(item => ({
+        date: item.date,
+        day: item.day, // Assuming this is in the forecast data
+        highTemp: Math.round(item.temperature_2m_max),
+        lowTemp: Math.round(item.temperature_2m_min),
+        icon: item.weather_icons[0] // Weatherstack icon URL
+    })) : [];
 
     return {
-    location: `${geoData[0].name}, ${geoData[0].country}`,
-    currentTemp: Math.round(currentWeather.main.temp),
-    condition: currentWeather.weather[0].main,
-    conditionIcon: currentWeather.weather[0].icon, // Add this line
-    highTemp: Math.round(currentWeather.main.temp_max),
-    lowTemp: Math.round(currentWeather.main.temp_min),
-    hourlyForecast,
-    dailyForecast,
-    precipitation: `${currentWeather.clouds?.all || 0}%`,
-    humidity: `${currentWeather.main.humidity}%`,
-    wind: `${(currentWeather.wind.speed * 3.6).toFixed(1)} km/h`
-};
+        location: `${location.name}, ${location.country}`,
+        currentTemp: Math.round(current.temperature),
+        condition: current.weather_descriptions[0],
+        conditionIcon: current.weather_icons[0], // Weatherstack icon URL
+        highTemp: Math.round(current.temperature_2m_max),
+        lowTemp: Math.round(current.temperature_2m_min),
+        hourlyForecast,
+        dailyForecast,
+        precipitation: `${current.precipitation}mm`,
+        humidity: `${current.humidity}%`,
+        wind: `${(current.wind_speed * 3.6).toFixed(1)} km/h`
+    };
 }
 
 function displayWeatherData(weatherData) {
@@ -99,8 +84,9 @@ function displayWeatherData(weatherData) {
     </div>
     <div class="weather-display">
         <div class="weather-condition">
-            <img src="https://openweathermap.org/img/wn/${weatherData.conditionIcon}@2x.png" alt="${weatherData.condition}">
+            <img src="${weatherData.conditionIcon}" alt="${weatherData.condition}">
             <div class="weather-temp">${weatherData.currentTemp}°C</div>
+            <div class="weather-condition-text">${weatherData.condition}</div>
         </div>
         <div class="weather-high-low">
             <div>H: ${weatherData.highTemp}°C</div>
@@ -113,7 +99,7 @@ function displayWeatherData(weatherData) {
         <div class="hourly-forecast">
             ${weatherData.hourlyForecast.map(hour => `
                 <div class="hourly-item">
-                    <img src="https://openweathermap.org/img/wn/${hour.icon}@2x.png" alt="${hour.temp}°C">
+                    <img src="${hour.icon}" alt="${hour.temp}°C"> <!-- Weatherstack icon -->
                     <div>${hour.time}</div>
                     <div>${hour.temp}°C</div>
                 </div>
@@ -126,7 +112,7 @@ function displayWeatherData(weatherData) {
         <div class="daily-forecast">
             ${weatherData.dailyForecast.map(day => `
                 <div class="daily-item">
-                    <img src="https://openweathermap.org/img/wn/${day.icon}@2x.png" alt="icon">
+                    <img src="${day.icon}" alt="icon"> <!-- Weatherstack icon -->
                     <div>${day.day}</div>
                     <div>${day.highTemp}°C / ${day.lowTemp}°C</div>
                 </div>
@@ -137,17 +123,17 @@ function displayWeatherData(weatherData) {
     <div class="weather-details">
     <div class="detail-box">
         <h4>Precipitation</h4>
-        <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="precipitation-icon" style="width: 30px;">
+        <img src="${weatherData.conditionIcon}" alt="precipitation-icon" style="width: 30px;"> <!-- Weatherstack icon -->
         <p>${weatherData.precipitation}</p>
     </div>
     <div class="detail-box">
         <h4>Humidity</h4>
-        <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="humidity-icon" style="width: 30px;">
+        <img src="${weatherData.conditionIcon}" alt="humidity-icon" style="width: 30px;"> <!-- Weatherstack icon -->
         <p>${weatherData.humidity}</p>
     </div>
     <div class="detail-box">
         <h4>Wind</h4>
-        <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="wind-icon" style="width: 30px;">
+        <img src="${weatherData.conditionIcon}" alt="wind-icon" style="width: 30px;"> <!-- Weatherstack icon -->
         <p>${weatherData.wind}</p>
     </div>
 </div>
